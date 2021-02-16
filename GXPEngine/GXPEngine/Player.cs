@@ -15,7 +15,7 @@ public class Player : AnimSprite
     private bool _krishna = false;
 
     public int score;
-    private int _karma;
+    public int karma;
     private int _health = 3;
 
 
@@ -197,7 +197,7 @@ public class Player : AnimSprite
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     public int GetKarma()
     {
-        return _karma;
+        return karma;
     }
 
     public int GetHealth()
