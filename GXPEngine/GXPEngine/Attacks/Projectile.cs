@@ -13,6 +13,8 @@ public class Projectile : Sprite
     //private Player _targetPlayer;
     //private Level _targetLevel;
 
+    public bool fire = false;
+
     public Projectile() : base("triangle.png")
     {
         SetScaleXY(0.2f, 0.2f);
@@ -32,6 +34,14 @@ public class Projectile : Sprite
         if (this.x > game.width || this.x < 0 || this.y < 0 || this.y > game.height)
         {
             this.LateDestroy();
+        }
+    }
+
+    void OnCollision(GameObject other)
+    {
+        if (other is Fire)
+        {
+            fire = true;
         }
     }
 
