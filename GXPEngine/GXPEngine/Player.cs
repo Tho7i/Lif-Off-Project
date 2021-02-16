@@ -57,7 +57,7 @@ public class Player : AnimSprite
         //-------------------------------------------------------------------------------------------------------------------------------------------
         if (Input.GetKey(Key.A))
         {
-            MoveUntilCollision(-_speed, 0.0f);
+            MoveUntilCollision(-_speed, 0.0f/*,_targetLevel.FindObjectsOfType(typeof(Fire))*/);
         }
 
         if (Input.GetKey(Key.D))
@@ -83,6 +83,12 @@ public class Player : AnimSprite
             for (int i = 0; i <150; i++)
             {
                 MoveUntilCollision(-1.0f, 0.0f);
+                if (i % 15 == 0)
+                {
+                    Fire fire = new Fire();
+                    fire.SetXY(this.x + fire.width / 2, this.y + fire.height / 2);
+                    _targetLevel.AddChild(fire);
+                }
             }  
         }
 
