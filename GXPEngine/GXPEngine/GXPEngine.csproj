@@ -43,6 +43,7 @@
     <Compile Include="Enemies\ChargingEnemy.cs" />
     <Compile Include="Enemies\Enemy.cs" />
     <Compile Include="Enemies\RangedEnemy.cs" />
+    <Compile Include="Fire.cs" />
     <Compile Include="GXPEngine\AddOns\Gizmos.cs" />
     <Compile Include="GXPEngine\AddOns\TiledLoader.cs" />
     <Compile Include="Level.cs" />

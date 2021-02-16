@@ -10,7 +10,7 @@ public class Level : GameObject
     private int _lastTimeSpawned = -5000;
     private int _enemiesToSpawn = 1;
 
-    ChargingEnemy enemy;
+    RangedEnemy enemy;
     Player player;
     HUD hud;
     TiledLoader loader;
@@ -67,19 +67,16 @@ public class Level : GameObject
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     private void enemySpawning()
     {
-        if (Time.time - _lastTimeSpawned >= 5000)
+        if (this.FindObjectsOfType(typeof(Enemy)).Length + this.FindObjectsOfType(typeof(RangedEnemy)).Length + this.FindObjectsOfType(typeof(ChargingEnemy)).Length <= 20 && Time.time - _lastTimeSpawned >= 5000)
         {
             for (int i = 0; i < _enemiesToSpawn; i++)
             {
-                enemy = new ChargingEnemy();
+                enemy = new RangedEnemy();
                 AddChild(enemy);
                 enemy.SetTargetPlayer(player);
                 _lastTimeSpawned = Time.time;
             }
-            if (_enemiesToSpawn < 8)
-            {
-                _enemiesToSpawn++;
-            }         
+            _enemiesToSpawn++;
         }
     }
 
