@@ -12,6 +12,8 @@ public class RangedEnemy : Sprite
     private int _randomise;
     private int _randomise2;
     private float _playerDistance;
+    private float _lastTimeShotProjectile = 0;
+    private float _projectileReload = 2000;
 
     private Sound _enemyDamage;
 
@@ -24,8 +26,8 @@ public class RangedEnemy : Sprite
 
     private void handleMovement()
     {
-        if (_targetPlayer.x > this.x) { x += _movSpeed; } else { x -= _movSpeed; }
-        if (_targetPlayer.y > this.y) { y += _movSpeed; } else { y -= _movSpeed; }
+        if (_targetPlayer.x > this.x) { x += _movSpeed; } else if (_targetPlayer.x < this.x) { x -= _movSpeed; }
+        if (_targetPlayer.y > this.y) { y += _movSpeed; } else if (_targetPlayer.y < this.y) { y -= _movSpeed; }
 
         _playerDistance = Mathf.Sqrt(Mathf.Pow(this.x - _targetPlayer.x, 2) + Mathf.Pow(this.y - _targetPlayer.y, 2));
         if (_playerDistance <= 150)
@@ -33,6 +35,21 @@ public class RangedEnemy : Sprite
             _movSpeed = 0;
         }
         else { _movSpeed = 1.0f; }
+    }
+
+    private void handleShooting()
+    {
+        if (_movSpeed == 0 && _lastTimeShotProjectile + _projectileReload < Time.now)
+        {
+            EnemyProjectile projectile = new EnemyProjectile();
+            projectile.SetTargetPlayer(_targetPlayer);
+            //projectile.SetTargetPlayer(this);
+            //projectile.SetTargetLevel(_targetLevel);
+            this.parent.AddChild(projectile);
+            projectile.SetXY(this.x, this.y - this.height / 2 + 20);
+            projectile.SetRotation();
+            _lastTimeShotProjectile = Time.now;
+        }
     }
 
     private void randomizeEnemyPosition()
@@ -76,7 +93,7 @@ public class RangedEnemy : Sprite
     void Update()
     {
         handleMovement();
-
+        handleShooting();
         if (_health <= 0)
         {
             LateDestroy();

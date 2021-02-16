@@ -10,7 +10,7 @@ public class Level : GameObject
     private int _lastTimeSpawned = -5000;
     private int _enemiesToSpawn = 1;
 
-    Enemy enemy;
+    RangedEnemy enemy;
     Player player;
     HUD hud;
     TiledLoader loader;
@@ -71,7 +71,7 @@ public class Level : GameObject
         {
             for (int i = 0; i < _enemiesToSpawn; i++)
             {
-                enemy = new Enemy();
+                enemy = new RangedEnemy();
                 AddChild(enemy);
                 enemy.SetTargetPlayer(player);
                 _lastTimeSpawned = Time.time;
@@ -86,7 +86,7 @@ public class Level : GameObject
 
     void Update()
     {
-        //enemySpawning();
+        enemySpawning();
         if (player.GetHealth() <= 0)
         {
             this.Destroy();
