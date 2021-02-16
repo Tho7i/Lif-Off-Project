@@ -118,7 +118,12 @@ public class RangedEnemy : Sprite
         if (other is Projectile)
         {
             _enemyDamage.Play();
-            _health--;
+            Projectile projectile = (Projectile)other;
+            if (projectile.fire)
+            {
+                _health -= 2;
+            }
+            else { _health--; }
             other.LateDestroy();
         }
 
