@@ -39,6 +39,7 @@
     <Compile Include="Attacks\EnemyProjectile.cs" />
     <Compile Include="Attacks\Explosive.cs" />
     <Compile Include="Attacks\Melee.cs" />
+    <Compile Include="Enemies\ChargingEnemy.cs" />
     <Compile Include="Enemies\Enemy.cs" />
     <Compile Include="Enemies\RangedEnemy.cs" />
     <Compile Include="GXPEngine\AddOns\Gizmos.cs" />

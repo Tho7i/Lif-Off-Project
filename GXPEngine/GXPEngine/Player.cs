@@ -183,7 +183,7 @@ public class Player : AnimSprite
 
     void OnCollision(GameObject other)
     {
-        if (other is Enemy)
+        if (other is Enemy || other is RangedEnemy || other is ChargingEnemy)
         {
             _health--;
             _playerDamage.Play();
