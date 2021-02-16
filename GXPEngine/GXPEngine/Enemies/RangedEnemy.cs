@@ -122,7 +122,7 @@ public class RangedEnemy : Sprite
             other.LateDestroy();
         }
 
-        if (other is Explosive)
+        if (other is DamagingExplosive)
         {
             _enemyDamage.Play();
             _health -= 2;

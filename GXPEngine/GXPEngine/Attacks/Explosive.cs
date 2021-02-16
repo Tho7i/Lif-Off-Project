@@ -13,7 +13,7 @@ public class Explosive : Sprite
     private float _mouseY;
     private float _explosionTime = 3000;
 
-    public Explosive() : base("circle.png")
+    public Explosive() : base("circle.png", false, false)
     {
         SetScaleXY(0.5f, 0.5f);
         SetOrigin(this.width / 2, this.height / 2);
@@ -34,7 +34,12 @@ public class Explosive : Sprite
         if (Mathf.Abs(this.x - _mouseX) < 5 && Mathf.Abs(this.y - _mouseY) < 5)
         {
             _explosiveSpeed = 0.0f;
-            SetScaleXY(1, 1);
+            if (_explosionTime <= 500)
+            {
+                DamagingExplosive explosion = new DamagingExplosive();
+                AddChild(explosion);
+            }
+            
             _explosionTime -= Time.deltaTime;
             if (_explosionTime <= 0)
             {

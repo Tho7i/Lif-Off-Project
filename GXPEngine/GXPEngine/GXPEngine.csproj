@@ -36,6 +36,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attacks\DamagingExplosive.cs" />
     <Compile Include="Attacks\EnemyProjectile.cs" />
     <Compile Include="Attacks\Explosive.cs" />
     <Compile Include="Attacks\Melee.cs" />

@@ -98,7 +98,7 @@ public class Enemy : AnimSprite
             other.LateDestroy();
         }
 
-        if (other is Explosive)
+        if (other is DamagingExplosive)
         {
             _enemyDamage.Play();
             _health -= 2;
