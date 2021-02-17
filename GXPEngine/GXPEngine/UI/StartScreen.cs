@@ -6,11 +6,11 @@ using GXPEngine;
 using System.Drawing;
 using TiledMapParser;
 
-public class StartScreen : GameObject
+public class StartScreen : AnimationSprite
 {
     private Button _startButton;
 
-    public StartScreen()
+    public StartScreen() : base("Try.png", 2, 1)
     {
         _startButton = new Button();
         _startButton.SetXY(game.width / 2, game.height / 3 * 2);
@@ -32,6 +32,8 @@ public class StartScreen : GameObject
 
     void Update()
     {
+        Animate();
+        SetCycle(0, 2, 5, true);
         startOnButtonPress(_startButton);
     }
 }
