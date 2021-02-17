@@ -32,6 +32,7 @@ public class Player : AnimSprite
     //Sounds
     private Sound _playerDamage;
 
+    //public static Camera mainCamera;
 
     public Player() : base("Char.png", 3, 1)
     {
@@ -44,6 +45,7 @@ public class Player : AnimSprite
         _playerDamage = new Sound("PlayerDamage.mp3", false, false);
 
         //Camera camera = new Camera(0, 0, game.width, game.height);
+        //mainCamera = camera;
         //AddChild(camera);
     }
 

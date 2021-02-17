@@ -33,18 +33,18 @@ public class Enemy : Sprite
 
         if (_randomise == 1)
         {
-            x = Utils.Random(1, game.width + 1);
+            x = Utils.Random(-64, game.width + 65);
 
 
-            if (x <= 64 || x >= 704)
+            if (x <= 0 || x >= game.width)
             {
                 y = Utils.Random(1, game.height + 1);
             }
             else
             {
                 _randomise2 = Utils.Random(1, 3);
-                if (_randomise2 == 1) { y = 0; }
-                else { y = game.height; }
+                if (_randomise2 == 1) { y = -64; }
+                else { y = game.height + 64; }
             }
         }
         else
@@ -52,15 +52,15 @@ public class Enemy : Sprite
             y = Utils.Random(1, game.height + 1);
 
 
-            if (y <= 64 || y >= 570)
+            if (y <= 0 || y >= game.height + 65)
             {
                 x = Utils.Random(1, game.width + 1);
             }
             else
             {
                 _randomise2 = Utils.Random(1, 3);
-                if (_randomise2 == 1) { x = 0; }
-                else { x = game.width; }
+                if (_randomise2 == 1) { x = -64; }
+                else { x = game.width + 64; }
             }
         }
     }

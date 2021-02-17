@@ -9,6 +9,7 @@ public class MyGame : Game
 	{
 		StartScreen startScreen = new StartScreen();
 		AddChild(startScreen);
+		//ShowMouse(true);
 		targetFps = 60;
     }
 
