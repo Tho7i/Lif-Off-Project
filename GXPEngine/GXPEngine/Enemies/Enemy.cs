@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using GXPEngine;
 
-public class Enemy : AnimSprite
+public class Enemy : Sprite
 {
     private Player _targetPlayer;
     private float _movSpeed = 1.0f;
@@ -14,11 +14,10 @@ public class Enemy : AnimSprite
 
     private Sound _enemyDamage;
 
-    public Enemy() : base("Enemy.png", 2, 1)
+    public Enemy() : base("Enemy.png")
     {
         _enemyDamage = new Sound("EnemyDamage.wav", false, false);
         this.SetOrigin(this.width / 2, this.height / 2);
-        SetFrame(0);
         randomizeEnemyPosition();
     }
 

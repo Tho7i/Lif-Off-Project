@@ -16,7 +16,7 @@ public class ChargingEnemy : Sprite
 
     private Sound _enemyDamage;
 
-    public ChargingEnemy() : base("checkers.png")
+    public ChargingEnemy() : base("CharginEnemy.png")
     {
         _enemyDamage = new Sound("EnemyDamage.wav", false, false);
         this.SetOrigin(this.width / 2, this.height / 2);

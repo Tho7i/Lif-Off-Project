@@ -10,22 +10,24 @@ public class Level : GameObject
     private int _lastTimeSpawned = -5000;
     private int _enemiesToSpawn = 1;
 
-    ChargingEnemy enemy;
-    Player player;
-    HUD hud;
-    TiledLoader loader;
+    Enemy _enemy;
+    RangedEnemy _rangedEnemy;
+    ChargingEnemy _chargingEnemy;
+    Player _player;
+    HUD _hud;
+    TiledLoader _loader;
 
     public Level() : base()
     {
         setupLevel();             
-        player = new Player();
-        AddChild(player);
-        player.SetTargetLevel(this);
+        _player = new Player();
+        AddChild(_player);
+        _player.SetTargetLevel(this);
 
         //Setting up HUD
-        hud = new HUD();
-        AddChild(hud);
-        hud.SetTargetPlayer(player);
+        _hud = new HUD();
+        AddChild(_hud);
+        _hud.SetTargetPlayer(_player);
     }
 
     //level loading method
@@ -38,25 +40,25 @@ public class Level : GameObject
     //tiles loading(order matters depending on how the tiles are ordered)
     private void LoadMap(string filename)
     {
-        loader = new TiledLoader(filename);
+        _loader = new TiledLoader(filename);
 
 
 
-        loader.addColliders = false;    //disables collision
-        loader.LoadTileLayers(0);
+        _loader.addColliders = false;    //disables collision
+        _loader.LoadTileLayers(0);
 
-        loader.addColliders = false;    //disables collision
-        loader.LoadTileLayers(1);
+        _loader.addColliders = false;    //disables collision
+        _loader.LoadTileLayers(1);
 
-        loader.addColliders = true;     //enables collision
-        loader.LoadTileLayers(2);
-
-
+        _loader.addColliders = true;     //enables collision
+        _loader.LoadTileLayers(2);
 
 
 
-        loader.autoInstance = true;     //instantiates object layers
-        loader.LoadObjectGroups();
+
+
+        _loader.autoInstance = true;     //instantiates object layers
+        _loader.LoadObjectGroups();
 
 
 
@@ -71,19 +73,37 @@ public class Level : GameObject
         {
             for (int i = 0; i < _enemiesToSpawn; i++)
             {
-                enemy = new ChargingEnemy();
-                AddChild(enemy);
-                enemy.SetTargetPlayer(player);
-                _lastTimeSpawned = Time.time;
+                float randomize = Utils.Random(1, 4);
+                if (randomize == 1)
+                {
+                    _enemy = new Enemy();
+                    AddChild(_enemy);
+                    _enemy.SetTargetPlayer(_player);
+                }
+                
+                else if (randomize == 2)
+                {
+                    _rangedEnemy = new RangedEnemy();
+                    AddChild(_rangedEnemy);
+                    _rangedEnemy.SetTargetPlayer(_player);
+                }
+
+                else if (randomize == 3)
+                {
+                    _chargingEnemy = new ChargingEnemy();
+                    AddChild(_chargingEnemy);
+                    _chargingEnemy.SetTargetPlayer(_player);
+                }
             }
             _enemiesToSpawn++;
+            _lastTimeSpawned = Time.time;
         }
     }
 
     void Update()
     {
         enemySpawning();
-        if (player.GetHealth() <= 0)
+        if (_player.GetHealth() <= 0)
         {
             this.Destroy();
             StartScreen startScreen = new StartScreen();

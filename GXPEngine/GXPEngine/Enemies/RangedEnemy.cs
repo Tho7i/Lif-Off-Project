@@ -17,7 +17,7 @@ public class RangedEnemy : Sprite
 
     private Sound _enemyDamage;
 
-    public RangedEnemy() : base("colors.png")
+    public RangedEnemy() : base("RangedEnemy.png")
     {
         _enemyDamage = new Sound("EnemyDamage.wav", false, false);
         this.SetOrigin(this.width / 2, this.height / 2);
