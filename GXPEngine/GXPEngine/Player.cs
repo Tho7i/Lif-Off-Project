@@ -22,7 +22,7 @@ public class Player : AnimSprite
     //reload cooldown in miliseonds
     private float _projectileReload= 500;
     private float _meleeReload = 500;
-    private float _explosiveReload = 4000;
+    private float _explosiveReload = 2000;
     private float _lastTimeShotProjectile = 0;
     private float _lastTimeShotMelee = 0;
     private float _lastTimeShotExplosive = 0;
@@ -198,7 +198,7 @@ public class Player : AnimSprite
         }
 
         if (_shiva){ _speed = 2.4f; }
-        else if (_ganesh) { _speed = 1.5f; }
+        else if (_ganesh) { _speed = 1.8f; }
         else if (_krishna) { _speed = 2.0f; }
     }
 
@@ -211,7 +211,7 @@ public class Player : AnimSprite
 
     void OnCollision(GameObject other)
     {
-        if (other is Enemy || other is RangedEnemy || other is ChargingEnemy)
+        if (other is Enemy || other is RangedEnemy || other is ChargingEnemy || other is EnemyProjectile)
         {
             _health--;
             _playerDamage.Play();

@@ -11,7 +11,7 @@ public class Explosive : Sprite
     private float _mouseAngle;
     private float _mouseX;
     private float _mouseY;
-    private float _explosionTime = 3000;
+    private float _explosionTime = 1500;
 
     public Explosive() : base("circle.png", false, false)
     {
