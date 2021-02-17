@@ -32,6 +32,11 @@ public class Player : AnimSprite
     //Sounds
     private Sound _playerDamage;
 
+    //Animations
+    AnimationSprite _krishnaAnimation = new AnimationSprite("krishna.png", 6, 4, 24, false, false);
+    AnimationSprite _ganeshAnimation = new AnimationSprite("ganesh.png", 6, 4, 24, false, false);
+    AnimationSprite _shivaAnimation = new AnimationSprite("shiva.png", 6, 4, 24, false, false);
+
     //public static Camera mainCamera;
 
     public Player() : base("Char.png", 3, 1)
@@ -43,6 +48,10 @@ public class Player : AnimSprite
         this.SetOrigin(this.width / 2, this.height / 2);
         SetFrame(0);
         _playerDamage = new Sound("PlayerDamage.mp3", false, false);
+        setupAnimations();
+        this.alpha = 0;
+
+
 
         //Camera camera = new Camera(0, 0, game.width, game.height);
         //mainCamera = camera;
@@ -199,13 +208,90 @@ public class Player : AnimSprite
             SetFrame(2);
         }
 
-        if (_shiva){ _speed = 2.4f; }
-        else if (_ganesh) { _speed = 1.8f; }
-        else if (_krishna) { _speed = 2.0f; }
+        if (_shiva)
+        {
+            _speed = 2.4f;
+            animationVisibility();
+
+        }
+        else if (_ganesh)
+        {
+            _speed = 1.8f;
+            animationVisibility();
+        }
+        else if (_krishna)
+        {
+            _speed = 2.0f;
+            animationVisibility();
+        }
+    }
+
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //                                                                                        handleShifting()
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    private void handleAnimation()
+    {
+        if (Input.GetKey(Key.A))
+        {
+            _krishnaAnimation.Animate();
+            _krishnaAnimation.SetCycle(12, 6, 20, true);
+            _shivaAnimation.Animate();
+            _shivaAnimation.SetCycle(12, 6, 20, true);
+            _ganeshAnimation.Animate();
+            _ganeshAnimation.SetCycle(12, 6, 20, true);
+        }
+
+        else if (Input.GetKey(Key.D))
+        {
+            _krishnaAnimation.Animate();
+            _krishnaAnimation.SetCycle(6, 6, 20, true);
+            _shivaAnimation.Animate();
+            _shivaAnimation.SetCycle(6, 6, 20, true);
+            _ganeshAnimation.Animate();
+            _ganeshAnimation.SetCycle(6, 6, 20, true);
+        }
+
+        else if (Input.GetKey(Key.S))
+        {
+            _krishnaAnimation.Animate();
+            _krishnaAnimation.SetCycle(18, 6, 20, true);
+            _shivaAnimation.Animate();
+            _shivaAnimation.SetCycle(18, 6, 20, true);
+            _ganeshAnimation.Animate();
+            _ganeshAnimation.SetCycle(18, 6, 20, true);
+        }
+
+        else if (Input.GetKey(Key.W))
+        {
+            _krishnaAnimation.Animate();
+            _krishnaAnimation.SetCycle(0, 6, 20, true);
+            _shivaAnimation.Animate();
+            _shivaAnimation.SetCycle(0, 6, 20, true);
+            _ganeshAnimation.Animate();
+            _ganeshAnimation.SetCycle(0, 6, 20, true);
+        }
+    }
+
+    private void setupAnimations()
+    {
+        _krishnaAnimation.SetOrigin(width / 2, height / 2);
+        AddChild(_krishnaAnimation);
+        _ganeshAnimation.SetOrigin(width / 2, height / 2);
+        AddChild(_ganeshAnimation);
+        _shivaAnimation.SetOrigin(width / 2, height / 2);
+        AddChild(_shivaAnimation);
+    }
+
+    private void animationVisibility()
+    {
+        _shivaAnimation.visible = _shiva;
+        _ganeshAnimation.visible = _ganesh;
+        _krishnaAnimation.visible = _krishna;
     }
 
     void Update()
     {
+        handleAnimation();
         handleShifting();
         handleMovement();
         handleShooting();
