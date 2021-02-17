@@ -12,6 +12,7 @@ public class ChargingEnemy : Sprite
     private int _randomise;
     private int _randomise2;
     private float _playerDistance;
+    private float _stopDuration = 500;
 
     private Sound _enemyDamage;
 
@@ -30,7 +31,12 @@ public class ChargingEnemy : Sprite
         _playerDistance = Mathf.Sqrt(Mathf.Pow(this.x - _targetPlayer.x, 2) + Mathf.Pow(this.y - _targetPlayer.y, 2));
         if (_playerDistance <= 150)
         {
-            _movSpeed = 2.0f;
+            if(_stopDuration > 0)
+            {
+                _movSpeed = 0.0f;
+                _stopDuration -= Time.deltaTime;
+            }
+            else { _movSpeed = 2.0f; }
         }
         else { _movSpeed = 1.0f; }
     }

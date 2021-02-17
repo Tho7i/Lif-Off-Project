@@ -6,6 +6,9 @@ using GXPEngine;
 
 public class Fire : Sprite
 {
+    private float _duration = 4000;
+
+
     public Fire() : base("FireTest.png")
     {
         SetOrigin(width / 2, height / 2);
@@ -14,9 +17,10 @@ public class Fire : Sprite
 
     void Update()
     {
-        x++;
-        x--;
-        y++;
-        y--;
+        _duration -= Time.deltaTime;
+        if(_duration <= 0)
+        {
+            this.LateDestroy();
+        }
     }
 }

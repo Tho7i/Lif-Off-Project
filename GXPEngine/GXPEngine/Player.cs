@@ -86,7 +86,7 @@ public class Player : AnimSprite
                 if (i % 15 == 0)
                 {
                     Fire fire = new Fire();
-                    fire.SetXY(this.x + fire.width / 2, this.y + fire.height / 2);
+                    fire.SetXY(this.x + fire.width / 2, this.y);
                     _targetLevel.AddChild(fire);
                 }
             }  
@@ -97,6 +97,12 @@ public class Player : AnimSprite
             for (int i = 0; i < 150; i++)
             {
                 MoveUntilCollision(1.0f, 0.0f);
+                if (i % 15 == 0)
+                {
+                    Fire fire = new Fire();
+                    fire.SetXY(this.x - fire.width / 2, this.y);
+                    _targetLevel.AddChild(fire);
+                }
             }
         }
 
@@ -105,6 +111,12 @@ public class Player : AnimSprite
             for (int i = 0; i < 150; i++)
             {
                 MoveUntilCollision(0.0f, -1.0f);
+                if (i % 15 == 0)
+                {
+                    Fire fire = new Fire();
+                    fire.SetXY(this.x, this.y + fire.height / 2);
+                    _targetLevel.AddChild(fire);
+                }
             }
         }
 
@@ -113,6 +125,12 @@ public class Player : AnimSprite
             for (int i = 0; i < 150; i++)
             {
                 MoveUntilCollision(0.0f, 1.0f);
+                if (i % 15 == 0)
+                {
+                    Fire fire = new Fire();
+                    fire.SetXY(this.x, this.y - fire.height / 2);
+                    _targetLevel.AddChild(fire);
+                }
             }
         }
     }
