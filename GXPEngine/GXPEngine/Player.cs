@@ -324,6 +324,7 @@ public class Player : AnimSprite
             if (_invincibilityTime <= 0)
             {
                 invincible = false;
+                karma = 0;
             }
         }
     }
