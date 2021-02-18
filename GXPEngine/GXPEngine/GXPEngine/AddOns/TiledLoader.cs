@@ -347,7 +347,7 @@ namespace TiledMapParser {
 				obj.Initialize();
 				Sprite newSprite = null;
 
-                if (obj.Type == "TiledObject")
+                if (obj.Type == "ObjectsToCollideWith")
                 {
 					Vector2 pos = new Vector2(obj.X, obj.Y);
 					Positions.Add(pos);

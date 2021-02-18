@@ -8,7 +8,7 @@
     <ProjectGuid>{B5126D4C-7FE0-4552-BC8C-E68D529C22B2}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>GXPEngine</RootNamespace>
-    <AssemblyName>Playtest</AssemblyName>
+    <AssemblyName>Prototype1.5</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>True</DebugSymbols>

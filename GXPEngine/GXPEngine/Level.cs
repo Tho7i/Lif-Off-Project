@@ -110,7 +110,7 @@ public class Level : GameObject
 
     void Update()
     {
-        //enemySpawning();
+        enemySpawning();
         if (_player.GetHealth() <= 0)
         {
             this.Destroy();

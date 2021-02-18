@@ -33,7 +33,7 @@ public class StartScreen : AnimationSprite
     void Update()
     {
         Animate();
-        SetCycle(0, 2, 5, true);
+        SetCycle(0, 2, 10, true);
         startOnButtonPress(_startButton);
     }
 }
