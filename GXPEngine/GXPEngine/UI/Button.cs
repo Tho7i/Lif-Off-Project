@@ -9,7 +9,6 @@ public class Button : AnimationSprite
     public Button() : base("Play.png", 1, 2)
     {
         SetOrigin(this.width / 2, this.height / 2);
-        SetScaleXY(2.0f, 2.0f);
     }
 
     void Update()

@@ -15,7 +15,8 @@ public class Player : AnimSprite
     private bool _krishna = false;
 
     public int score;
-    private int _karma;
+    public int karma = 0;
+    public bool invincible = false;
     private int _health = 3;
 
 
@@ -26,6 +27,8 @@ public class Player : AnimSprite
     private float _lastTimeShotProjectile = 0;
     private float _lastTimeShotMelee = 0;
     private float _lastTimeShotExplosive = 0;
+    private float _karmaDecreaseTime = 10000;
+    private float _invincibilityTime = 3000;
 
     private Level _targetLevel;
 
@@ -93,7 +96,7 @@ public class Player : AnimSprite
         {
             for (int i = 0; i <150; i++)
             {
-                MoveUntilCollision(-1.0f, 0.0f);
+                MoveUntilCollision(-1.0f, 0.0f, _targetLevel.FindObjectsOfType(typeof(ObjectsToCollideWith)));
                 if (i % 15 == 0 && _krishna)
                 {
                     Fire fire = new Fire();
@@ -107,7 +110,7 @@ public class Player : AnimSprite
         {
             for (int i = 0; i < 150; i++)
             {
-                MoveUntilCollision(1.0f, 0.0f);
+                MoveUntilCollision(1.0f, 0.0f, _targetLevel.FindObjectsOfType(typeof(ObjectsToCollideWith)));
                 if (i % 15 == 0 && _krishna)
                 {
                     Fire fire = new Fire();
@@ -121,7 +124,7 @@ public class Player : AnimSprite
         {
             for (int i = 0; i < 150; i++)
             {
-                MoveUntilCollision(0.0f, -1.0f);
+                MoveUntilCollision(0.0f, -1.0f, _targetLevel.FindObjectsOfType(typeof(ObjectsToCollideWith)));
                 if (i % 15 == 0 && _krishna)
                 {
                     Fire fire = new Fire();
@@ -135,7 +138,7 @@ public class Player : AnimSprite
         {
             for (int i = 0; i < 150; i++)
             {
-                MoveUntilCollision(0.0f, 1.0f);
+                MoveUntilCollision(0.0f, 1.0f, _targetLevel.FindObjectsOfType(typeof(ObjectsToCollideWith)));
                 if (i % 15 == 0 && _krishna)
                 {
                     Fire fire = new Fire();
@@ -216,12 +219,12 @@ public class Player : AnimSprite
         }
         else if (_ganesh)
         {
-            _speed = 1.8f;
+            _speed = 2.3f;
             animationVisibility();
         }
         else if (_krishna)
         {
-            _speed = 2.0f;
+            _speed = 2.5f;
             animationVisibility();
         }
     }
@@ -272,6 +275,9 @@ public class Player : AnimSprite
         }
     }
 
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //                                                                                        setupAnimations()
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     private void setupAnimations()
     {
         _krishnaAnimation.SetOrigin(width / 2, height / 2);
@@ -282,6 +288,9 @@ public class Player : AnimSprite
         AddChild(_shivaAnimation);
     }
 
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //                                                                                        animationVisibility()
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     private void animationVisibility()
     {
         _shivaAnimation.visible = _shiva;
@@ -289,8 +298,39 @@ public class Player : AnimSprite
         _krishnaAnimation.visible = _krishna;
     }
 
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //                                                                                        animationVisibility()
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    private void automaticKarmaDecrease()
+    {
+        _karmaDecreaseTime -= Time.deltaTime;
+        if (_karmaDecreaseTime <= 0)
+        {
+            karma--;
+            _karmaDecreaseTime = 10000;
+        }
+    }
+
+    private void Invincibility()
+    {
+        if (karma >= 21)
+        {
+            invincible = true;
+            _invincibilityTime = 3000;
+        }
+        if (invincible)
+        {
+            _invincibilityTime -= Time.deltaTime;
+            if (_invincibilityTime <= 0)
+            {
+                invincible = false;
+            }
+        }
+    }
     void Update()
     {
+        Invincibility();
+        automaticKarmaDecrease();
         handleAnimation();
         handleShifting();
         handleMovement();
@@ -301,9 +341,12 @@ public class Player : AnimSprite
     {
         if (other is Enemy || other is RangedEnemy || other is ChargingEnemy || other is EnemyProjectile)
         {
-            _health--;
-            _playerDamage.Play();
-            other.LateDestroy();    //changed to LateDestroy to avoid crash
+            if (!invincible)
+            {
+                _health--;
+                _playerDamage.Play();
+            }
+            other.LateDestroy();
         }
     }
 
@@ -311,10 +354,6 @@ public class Player : AnimSprite
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //                                                                                        pubblic getters/setters
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    public int GetKarma()
-    {
-        return _karma;
-    }
 
     public int GetHealth()
     {

@@ -8,7 +8,7 @@
     <ProjectGuid>{B5126D4C-7FE0-4552-BC8C-E68D529C22B2}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>GXPEngine</RootNamespace>
-    <AssemblyName>Prototype1.5</AssemblyName>
+    <AssemblyName>Prototype2.1</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>True</DebugSymbols>
@@ -91,7 +91,9 @@
     <Compile Include="ClassesForTiled\TiledFire.cs" />
     <Compile Include="Timer.cs" />
     <Compile Include="UI\Button.cs" />
+    <Compile Include="UI\HPHUD.cs" />
     <Compile Include="UI\HUD.cs" />
+    <Compile Include="UI\Karma.cs" />
     <Compile Include="UI\StartScreen.cs" />
   </ItemGroup>
   <ItemGroup />

@@ -73,6 +73,7 @@ public class Enemy : Sprite
         {
             LateDestroy();
             _targetPlayer.score++;
+            if (_targetPlayer.karma < 21) { _targetPlayer.karma++; }
         }
     }
 

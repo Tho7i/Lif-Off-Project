@@ -15,6 +15,8 @@ public class Level : GameObject
     ChargingEnemy _chargingEnemy;
     Player _player;
     HUD _hud;
+    HPHUD _hp;
+    Karma _karmaHUD;
     TiledLoader _loader;
 
     List<GameObject> levelTiles = new List<GameObject>();
@@ -30,6 +32,14 @@ public class Level : GameObject
         _hud = new HUD();
         AddChild(_hud);
         _hud.SetTargetPlayer(_player);
+
+        _hp = new HPHUD();
+        AddChild(_hp);
+        _hp.SetTargetPlayer(_player);
+
+        _karmaHUD = new Karma();
+        AddChild(_karmaHUD);
+        _karmaHUD.SetTargetPlayer(_player);
     }
 
     //level loading method
@@ -123,7 +133,7 @@ public class Level : GameObject
 
     void Update()
     {
-        //enemySpawning();
+        enemySpawning();
         if (_player.GetHealth() <= 0)
         {
             this.Destroy();

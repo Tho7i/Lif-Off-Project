@@ -10,7 +10,7 @@ public class StartScreen : AnimationSprite
 {
     private Button _startButton;
 
-    public StartScreen() : base("Try.png", 2, 1)
+    public StartScreen() : base("StartScreen.png", 2, 1)
     {
         _startButton = new Button();
         _startButton.SetXY(game.width / 2, game.height / 3 * 2);

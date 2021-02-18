@@ -9,6 +9,6 @@ public class DamagingExplosive : Sprite
     public DamagingExplosive() : base("circle.png")
     {
         SetOrigin(this.width / 2, this.height / 2);
-        SetScaleXY(2.0f, 2.0f);
+        SetScaleXY(4.0f, 4.0f);
     }
 }
