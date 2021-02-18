@@ -17,6 +17,8 @@ public class Level : GameObject
     HUD _hud;
     TiledLoader _loader;
 
+    List<GameObject> levelTiles = new List<GameObject>();
+
     public Level() : base()
     {
         setupLevel();             
@@ -60,6 +62,8 @@ public class Level : GameObject
         _loader.autoInstance = true;     //instantiates object layers
         _loader.LoadObjectGroups(0);
 
+        levelTiles = _loader.rootObject.GetChildren();
+
         if (_loader.Positions != null)
         {
             for (int i = 0; i < _loader.Positions.Count; i++)
@@ -77,7 +81,7 @@ public class Level : GameObject
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     private void enemySpawning()
     {
-        if (this.FindObjectsOfType(typeof(Enemy)).Length + this.FindObjectsOfType(typeof(RangedEnemy)).Length + this.FindObjectsOfType(typeof(ChargingEnemy)).Length <= 20 && Time.time - _lastTimeSpawned >= 5000)
+        if (this.FindObjectsOfType(typeof(Enemy)).Length + this.FindObjectsOfType(typeof(RangedEnemy)).Length + this.FindObjectsOfType(typeof(ChargingEnemy)).Length <= 15 && Time.time - _lastTimeSpawned >= 5000)
         {
             for (int i = 0; i < _enemiesToSpawn; i++)
             {
@@ -116,6 +120,11 @@ public class Level : GameObject
             this.Destroy();
             StartScreen startScreen = new StartScreen();
             game.AddChild(startScreen);
+            
+            for(int i = 0; i < levelTiles.Count; i++)
+            {
+                levelTiles[i].LateDestroy();
+            }
         }
     }
 }
