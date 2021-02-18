@@ -69,7 +69,7 @@ public class Projectile : Sprite
 
     void OnCollision(GameObject other)
     {
-        if (other is Fire)
+        if (other is Fire || other is TiledFire)
         {
             fire = true;
         }

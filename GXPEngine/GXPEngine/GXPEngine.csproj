@@ -85,9 +85,10 @@
     <Compile Include="GXPEngine\FMOD\FMODSoundSystem.cs" />
     <Compile Include="GXPEngine\SoLoud\Soloud.cs" />
     <Compile Include="GXPEngine\SoLoud\SoloudSoundSystem.cs" />
-    <Compile Include="ObjectsToCollideWith.cs" />
+    <Compile Include="ClassesForTiled\ObjectsToCollideWith.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Attacks\Projectile.cs" />
+    <Compile Include="ClassesForTiled\TiledFire.cs" />
     <Compile Include="Timer.cs" />
     <Compile Include="UI\Button.cs" />
     <Compile Include="UI\HUD.cs" />

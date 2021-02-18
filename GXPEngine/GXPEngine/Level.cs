@@ -35,7 +35,7 @@ public class Level : GameObject
     //level loading method
 	public void setupLevel()
 	{
-		LoadMap("Project3MAP02.tmx");
+		LoadMap("Level.VOL3.tmx");
 
 	}
 
@@ -47,20 +47,20 @@ public class Level : GameObject
 
 
         _loader.addColliders = false;    //disables collision
-        _loader.LoadTileLayers(0);
+        _loader.LoadTileLayers();
 
-        _loader.addColliders = false;    //disables collision
-        _loader.LoadTileLayers(1);
+        //_loader.addColliders = false;    //disables collision
+        //_loader.LoadTileLayers(1);
 
-        _loader.addColliders = true;     //enables collision
-        _loader.LoadTileLayers(2);
+        //_loader.addColliders = true;     //enables collision
+        //_loader.LoadTileLayers(7);
 
 
 
 
 
         _loader.autoInstance = true;     //instantiates object layers
-        _loader.LoadObjectGroups(0);
+        _loader.LoadObjectGroups();
 
         levelTiles = _loader.rootObject.GetChildren();
 
@@ -69,6 +69,15 @@ public class Level : GameObject
             for (int i = 0; i < _loader.Positions.Count; i++)
             {
                 ObjectsToCollideWith idk = new ObjectsToCollideWith(_loader.Positions[i].x, _loader.Positions[i].y - 32);
+                AddChild(idk);
+            }
+        }
+
+        if (_loader.FirePositions != null)
+        {
+            for (int i = 0; i < _loader.FirePositions.Count; i++)
+            {
+                TiledFire idk = new TiledFire(_loader.FirePositions[i].x, _loader.FirePositions[i].y - 32);
                 AddChild(idk);
             }
         }
@@ -114,7 +123,7 @@ public class Level : GameObject
 
     void Update()
     {
-        enemySpawning();
+        //enemySpawning();
         if (_player.GetHealth() <= 0)
         {
             this.Destroy();

@@ -15,6 +15,7 @@ namespace TiledMapParser {
 		Map map;
 
 		public List<Vector2> Positions = new List<Vector2>();
+		public List<Vector2> FirePositions = new List<Vector2>();
 
 		/// <summary>
 		/// All generated objects will be added as child of this object. 
@@ -352,6 +353,11 @@ namespace TiledMapParser {
 					Vector2 pos = new Vector2(obj.X, obj.Y);
 					Positions.Add(pos);
                 }
+				else if (obj.Type == "Fire")
+                {
+					Vector2 pos = new Vector2(obj.X, obj.Y);
+					FirePositions.Add(pos);
+				}
 
                 if (_manualObjects.Contains(obj.Type)) {
 					// Don't create an object, just fire the event and let the user create something.
