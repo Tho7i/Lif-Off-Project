@@ -58,15 +58,23 @@ public class Level : GameObject
 
 
         _loader.autoInstance = true;     //instantiates object layers
-        _loader.LoadObjectGroups();
+        _loader.LoadObjectGroups(0);
 
+        if (_loader.Positions != null)
+        {
+            for (int i = 0; i < _loader.Positions.Count; i++)
+            {
+                ObjectsToCollideWith idk = new ObjectsToCollideWith(_loader.Positions[i].x, _loader.Positions[i].y - 32);
+                AddChild(idk);
+            }
+        }
 
 
     }
 
-    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    //                                                                                        enemySpawning()
-    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //                                                                        enemySpawning()
+    //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     private void enemySpawning()
     {
         if (this.FindObjectsOfType(typeof(Enemy)).Length + this.FindObjectsOfType(typeof(RangedEnemy)).Length + this.FindObjectsOfType(typeof(ChargingEnemy)).Length <= 20 && Time.time - _lastTimeSpawned >= 5000)
@@ -102,7 +110,7 @@ public class Level : GameObject
 
     void Update()
     {
-        enemySpawning();
+        //enemySpawning();
         if (_player.GetHealth() <= 0)
         {
             this.Destroy();

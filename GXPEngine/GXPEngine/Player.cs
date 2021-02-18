@@ -68,22 +68,22 @@ public class Player : AnimSprite
         //-------------------------------------------------------------------------------------------------------------------------------------------
         if (Input.GetKey(Key.A))
         {
-            MoveUntilCollision(-_speed, 0.0f/*,_targetLevel.FindObjectsOfType(typeof(Fire))*/);
+            MoveUntilCollision(-_speed, 0.0f, _targetLevel.FindObjectsOfType(typeof(ObjectsToCollideWith)));
         }
 
         if (Input.GetKey(Key.D))
         {
-            MoveUntilCollision(_speed, 0.0f);              //added move untilcollision to the rest
+            MoveUntilCollision(_speed, 0.0f, _targetLevel.FindObjectsOfType(typeof(ObjectsToCollideWith)));              //added move untilcollision to the rest
         }
 
         if (Input.GetKey(Key.S))
         {
-            MoveUntilCollision(0.0f, _speed);
+            MoveUntilCollision(0.0f, _speed, _targetLevel.FindObjectsOfType(typeof(ObjectsToCollideWith)));
         }
 
         if (Input.GetKey(Key.W))
         {
-            MoveUntilCollision(0.0f, -_speed);
+            MoveUntilCollision(0.0f, -_speed, _targetLevel.FindObjectsOfType(typeof(ObjectsToCollideWith)));
         }
 
         //-------------------------------------------------------------------------------------------------------------------------------------------

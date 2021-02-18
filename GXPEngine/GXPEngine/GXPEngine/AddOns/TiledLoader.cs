@@ -10,8 +10,11 @@ namespace TiledMapParser {
 	/// <summary>
 	/// A class for automatically creating GXPEngine sprites from Tiled files.
 	/// </summary>
+
 	public class TiledLoader {
 		Map map;
+
+		public List<Vector2> Positions = new List<Vector2>();
 
 		/// <summary>
 		/// All generated objects will be added as child of this object. 
@@ -344,7 +347,13 @@ namespace TiledMapParser {
 				obj.Initialize();
 				Sprite newSprite = null;
 
-				if (_manualObjects.Contains(obj.Type)) {
+                if (obj.Type == "TiledObject")
+                {
+					Vector2 pos = new Vector2(obj.X, obj.Y);
+					Positions.Add(pos);
+                }
+
+                if (_manualObjects.Contains(obj.Type)) {
 					// Don't create an object, just fire the event and let the user create something.
 					//Console.WriteLine("Skipping object because type is in manual list: "+obj);
 				} else if (obj.ImageID>=0) { // Create an AnimationSprite
