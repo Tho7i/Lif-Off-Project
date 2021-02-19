@@ -96,6 +96,7 @@
     <Compile Include="UI\Karma.cs" />
     <Compile Include="UI\StartScreen.cs" />
     <Compile Include="UI\TuttorialButton.cs" />
+    <Compile Include="UI\TuttorialScreen.cs" />
   </ItemGroup>
   <ItemGroup />
 </Project>

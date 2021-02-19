@@ -39,10 +39,21 @@ public class StartScreen : AnimationSprite
         }
     }
 
+    private void tuttorialOnButtonPress(TuttorialButton button)
+    {
+        if (Input.GetMouseButtonUp(0) && button.HitTestPoint(Input.mouseX, Input.mouseY))
+        {
+            TuttorialScreen tuttorial = new TuttorialScreen();
+            game.AddChild(tuttorial);
+            this.LateDestroy();
+        }
+    }
+
     void Update()
     {
         Animate();
         SetCycle(0, 2, 10, true);
         startOnButtonPress(_startButton);
+        tuttorialOnButtonPress(tuttorialButton);
     }
 }
