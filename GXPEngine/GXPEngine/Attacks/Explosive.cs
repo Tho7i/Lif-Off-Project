@@ -17,7 +17,7 @@ public class Explosive : Sprite
     private Vector2 _direction;
     
 
-    public Explosive() : base("circle.png", false, false)
+    public Explosive() : base("Explosion.png", false, false)
     {
         SetScaleXY(0.5f, 0.5f);
         SetOrigin(this.width / 2, this.height / 2);

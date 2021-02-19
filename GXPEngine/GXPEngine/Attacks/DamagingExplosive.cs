@@ -7,7 +7,7 @@ using GXPEngine;
 public class DamagingExplosive : Sprite
 {
     private Sound _explosion;
-    public DamagingExplosive() : base("circle.png")
+    public DamagingExplosive() : base("Explosion.png")
     {
         _explosion = new Sound("explosion.mp3");
         _explosion.Play();

@@ -14,7 +14,7 @@ public class Melee : Sprite
     private Sound _melee;
 
 
-    public Melee() : base("triangle.png")
+    public Melee() : base("Hammer.png")
     {
         SetOrigin(this.width / 2, this.height / 2);
         _melee = new Sound("melee.mp3");

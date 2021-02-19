@@ -18,9 +18,8 @@ public class Projectile : Sprite
 
     public bool fire = false;
 
-    public Projectile() : base("triangle.png")
+    public Projectile() : base("arrow.png")
     {
-        SetScaleXY(0.2f, 0.2f);
         SetOrigin(0, height / 2f);
         _arrow = new Sound("arrow.mp3");
         _arrow.Play();

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using GXPEngine;
 
-public class ChargingEnemy : Sprite
+public class ChargingEnemy : AnimationSprite
 {
     private Player _targetPlayer;
     private float _movSpeed = 1.0f;
@@ -16,7 +16,7 @@ public class ChargingEnemy : Sprite
 
     private Sound _enemyDamage;
 
-    public ChargingEnemy() : base("CharginEnemy.png")
+    public ChargingEnemy() : base("ChargingEnemy.png", 8, 2)
     {
         _enemyDamage = new Sound("EnemyDamage.wav", false, false);
         this.SetOrigin(this.width / 2, this.height / 2);
@@ -79,8 +79,24 @@ public class ChargingEnemy : Sprite
         }
     }
 
+    private void handleAnimation()
+    {
+        if (this.x > _targetPlayer.x && _movSpeed > 0)
+        {
+            Animate();
+            SetCycle(0, 8, 20, true);
+        }
+
+        else if (this.x < _targetPlayer.x && _movSpeed > 0)
+        {
+            Animate();
+            SetCycle(8, 8, 20, true);
+        }
+    }
+
     void Update()
     {
+        handleAnimation();
         handleMovement();
         if (_health <= 0)
         {

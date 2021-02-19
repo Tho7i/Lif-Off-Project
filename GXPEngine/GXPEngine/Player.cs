@@ -243,16 +243,6 @@ public class Player : AnimSprite
         if (Input.GetKey(Key.A))
         {
             _krishnaAnimation.Animate();
-            _krishnaAnimation.SetCycle(12, 6, 20, true);
-            _shivaAnimation.Animate();
-            _shivaAnimation.SetCycle(12, 6, 20, true);
-            _ganeshAnimation.Animate();
-            _ganeshAnimation.SetCycle(12, 6, 20, true);
-        }
-
-        else if (Input.GetKey(Key.D))
-        {
-            _krishnaAnimation.Animate();
             _krishnaAnimation.SetCycle(6, 6, 20, true);
             _shivaAnimation.Animate();
             _shivaAnimation.SetCycle(6, 6, 20, true);
@@ -260,17 +250,17 @@ public class Player : AnimSprite
             _ganeshAnimation.SetCycle(6, 6, 20, true);
         }
 
-        else if (Input.GetKey(Key.S))
+        else if (Input.GetKey(Key.D))
         {
             _krishnaAnimation.Animate();
-            _krishnaAnimation.SetCycle(18, 6, 20, true);
+            _krishnaAnimation.SetCycle(12, 6, 20, true);
             _shivaAnimation.Animate();
-            _shivaAnimation.SetCycle(18, 6, 20, true);
+            _shivaAnimation.SetCycle(12, 6, 20, true);
             _ganeshAnimation.Animate();
-            _ganeshAnimation.SetCycle(18, 6, 20, true);
+            _ganeshAnimation.SetCycle(12, 6, 20, true);
         }
 
-        else if (Input.GetKey(Key.W))
+        else if (Input.GetKey(Key.S))
         {
             _krishnaAnimation.Animate();
             _krishnaAnimation.SetCycle(0, 6, 20, true);
@@ -278,6 +268,16 @@ public class Player : AnimSprite
             _shivaAnimation.SetCycle(0, 6, 20, true);
             _ganeshAnimation.Animate();
             _ganeshAnimation.SetCycle(0, 6, 20, true);
+        }
+
+        else if (Input.GetKey(Key.W))
+        {
+            _krishnaAnimation.Animate();
+            _krishnaAnimation.SetCycle(18, 6, 20, true);
+            _shivaAnimation.Animate();
+            _shivaAnimation.SetCycle(18, 6, 20, true);
+            _ganeshAnimation.Animate();
+            _ganeshAnimation.SetCycle(18, 6, 20, true);
         }
         animationVisibility();
     }
