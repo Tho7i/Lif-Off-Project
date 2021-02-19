@@ -11,6 +11,7 @@ public class Projectile : Sprite
     private float _mouseAngle;
     private float _projectileSpeed = 15.0f;
     private Vector2 _direction;
+    private Sound _arrow;
 
     //private Player _targetPlayer;
     //private Level _targetLevel;
@@ -21,6 +22,8 @@ public class Projectile : Sprite
     {
         SetScaleXY(0.2f, 0.2f);
         SetOrigin(0, height / 2f);
+        _arrow = new Sound("arrow.mp3");
+        _arrow.Play();
     }
 
     public void SetRotation()

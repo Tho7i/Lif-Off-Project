@@ -9,10 +9,11 @@ public class Player : AnimSprite
 
     private int _xSpawn = 200;
     private int _ySpawn = 200;
-    private float _speed = 1.5f;
+    private float _speed;
     private bool _shiva = false;
     private bool _ganesh = true;
     private bool _krishna = false;
+    //private bool _soundPlayed = false;
 
     public int score;
     public int karma = 0;
@@ -34,6 +35,9 @@ public class Player : AnimSprite
 
     //Sounds
     private Sound _playerDamage;
+    private Sound _steps;
+    private Sound _wings;
+    private Sound _dash;
 
     //Animations
     AnimationSprite _krishnaAnimation = new AnimationSprite("krishna.png", 6, 4, 24, false, false);
@@ -50,7 +54,10 @@ public class Player : AnimSprite
         //setting the originat the center of the sprite
         this.SetOrigin(this.width / 2, this.height / 2);
         SetFrame(0);
-        _playerDamage = new Sound("PlayerDamage.mp3", false, false);
+        _playerDamage = new Sound("PlayerDamage.mp3");
+        _dash = new Sound("dash.mp3");
+        //_steps = new Sound("steps.mp3");
+        //_wings = new Sound("wings.mp3");
         setupAnimations();
         this.alpha = 0;
 
@@ -147,6 +154,8 @@ public class Player : AnimSprite
                 }
             }
         }
+
+        if (Input.GetKeyUp(Key.SPACE)) { _dash.Play(); }
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -214,18 +223,15 @@ public class Player : AnimSprite
         if (_shiva)
         {
             _speed = 2.4f;
-            animationVisibility();
 
         }
         else if (_ganesh)
         {
             _speed = 2.3f;
-            animationVisibility();
         }
         else if (_krishna)
         {
             _speed = 2.5f;
-            animationVisibility();
         }
     }
 
@@ -273,6 +279,7 @@ public class Player : AnimSprite
             _ganeshAnimation.Animate();
             _ganeshAnimation.SetCycle(0, 6, 20, true);
         }
+        animationVisibility();
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -299,7 +306,7 @@ public class Player : AnimSprite
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    //                                                                                        animationVisibility()
+    //                                                                                        automaticKarmaDecrease()
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     private void automaticKarmaDecrease()
     {
@@ -311,7 +318,10 @@ public class Player : AnimSprite
         }
     }
 
-    private void Invincibility()
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //                                                                                        Invincibility()
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    private void invincibility()
     {
         if (karma >= 21)
         {
@@ -328,9 +338,34 @@ public class Player : AnimSprite
             }
         }
     }
+
+    //private void handleSound()
+    //{
+    //    for (int i = 3; i < 21; i += 3)
+    //    {
+    //        if (_ganesh && _ganeshAnimation.currentFrame == i && !_soundPlayed|| _krishna && _krishnaAnimation.currentFrame == i && !_soundPlayed)
+    //        {
+    //            _steps.Play();
+    //            _soundPlayed = true;
+    //        }
+
+    //        else if (_shiva && _shivaAnimation.currentFrame == i && !_soundPlayed)
+    //        {
+    //            _wings.Play();
+    //            _soundPlayed = true;
+    //        }
+            
+    //        if (_ganeshAnimation.currentFrame != i || _krishnaAnimation.currentFrame != i || _shivaAnimation.currentFrame != i)
+    //        {
+    //            _soundPlayed = false;
+    //        }
+    //    }
+    //}
+
     void Update()
     {
-        Invincibility();
+        //handleSound();
+        invincibility();
         automaticKarmaDecrease();
         handleAnimation();
         handleShifting();

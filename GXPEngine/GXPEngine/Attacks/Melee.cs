@@ -11,11 +11,14 @@ public class Melee : Sprite
     private float _mouseAngle;
     private float _projectileSpeed = 15.0f;
     private Player _targetPlayer;
+    private Sound _melee;
 
 
     public Melee() : base("triangle.png")
     {
         SetOrigin(this.width / 2, this.height / 2);
+        _melee = new Sound("melee.mp3");
+        _melee.Play();
     }
 
     public void SetRotation()

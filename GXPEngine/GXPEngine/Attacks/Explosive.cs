@@ -13,7 +13,9 @@ public class Explosive : Sprite
     private float _mouseX;
     private float _mouseY;
     private float _explosionTime = 1500;
+    private bool _explosionAdded = false;
     private Vector2 _direction;
+    
 
     public Explosive() : base("circle.png", false, false)
     {
@@ -46,10 +48,11 @@ public class Explosive : Sprite
         if (Mathf.Abs(this.x - _mouseX) < 5 && Mathf.Abs(this.y - _mouseY) < 5)
         {
             _explosiveSpeed = 0.0f;
-            if (_explosionTime <= 500)
+            if (_explosionTime <= 500 && !_explosionAdded)
             {
                 DamagingExplosive explosion = new DamagingExplosive();
                 AddChild(explosion);
+                _explosionAdded = true;
             }
             
             _explosionTime -= Time.deltaTime;
